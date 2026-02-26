@@ -1033,6 +1033,7 @@ Despite her professional and ministry responsibilities, she strives to live as a
 
             if (teamImages[teamKey]) {
                 const header = document.getElementById('modalHeaderImg');
+                header.classList.remove('shades-of-blue');
                 header.style.backgroundImage = `linear-gradient(rgba(30, 58, 138, 0.4), rgba(30, 58, 138, 0.4)), url('${teamImages[teamKey]}')`;
                 document.getElementById('modalAvatar').style.opacity = '0';
             }
