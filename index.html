@@ -45,6 +45,10 @@
             --blue-accent: #60a5fa;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #e0f2fe;
@@ -190,6 +194,19 @@
             background: #94a3b8;
         }
 
+        /* --- Scroll Animation Styles --- */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Responsive Fixes for iPhone SE */
         @media (max-width: 375px) {
             h1.serif.text-5xl {
@@ -260,8 +277,9 @@
         <div class="relative z-10">
             <p class="uppercase tracking-[0.4em] text-xs mb-3 font-bold text-blue-200">Church of God Sabbath Keeping
                 Ministries</p>
-            <h1 class="serif text-5xl md:text-7xl mb-4 font-bold">Women of Essence</h1>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-6">
+            <h1 class="serif text-5xl md:text-7xl mb-4 font-bold reveal-on-scroll">Women of Essence</h1>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-6 reveal-on-scroll"
+                style="transition-delay: 100ms;">
                 <div
                     class="px-6 py-2 bg-white/10 rounded-full backdrop-blur-md text-sm font-semibold border border-white/20">
                     <i class="far fa-calendar-alt mr-2"></i> Feb 27–28, 2026
@@ -289,17 +307,19 @@
             <!-- Desktop Links -->
             <div class="hidden md:flex flex-1 justify-around">
                 <button onclick="showPage('friday')" id="btn-friday"
-                    class="nav-btn px-4 py-2 uppercase text-[10px] md:text-xs tracking-widest nav-active transition-all">Friday
+                    class="nav-btn px-2 py-2 uppercase text-[10px] md:text-xs tracking-widest nav-active transition-all">Friday
                     Service</button>
                 <button onclick="showPage('saturday')" id="btn-saturday"
-                    class="nav-btn px-4 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Saturday
+                    class="nav-btn px-2 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Saturday
                     Service</button>
                 <button onclick="showPage('about')" id="btn-about"
-                    class="nav-btn px-4 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Our
+                    class="nav-btn px-2 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Our
                     Identity</button>
                 <button onclick="showPage('menu')" id="btn-menu"
-                    class="nav-btn px-4 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Fellowship
+                    class="nav-btn px-2 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Fellowship
                     Menu</button>
+                <button onclick="showPage('feedback')" id="btn-feedback"
+                    class="nav-btn px-2 py-2 uppercase text-[10px] md:text-xs tracking-widest text-gray-400 transition-all">Feedback</button>
             </div>
         </div>
 
@@ -322,6 +342,10 @@
                 class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
                 <i class="fas fa-utensils w-5"></i> Fellowship Menu
             </button>
+            <button onclick="showPage('feedback')" id="mobile-btn-feedback"
+                class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
+                <i class="fas fa-comment-dots w-5"></i> Leave Feedback
+            </button>
         </div>
     </nav>
 
@@ -330,14 +354,14 @@
 
         <!-- Friday Section -->
         <section id="friday" class="space-y-6 page-fade-in">
-            <div class="text-center mb-10">
+            <div class="text-center mb-10 reveal-on-scroll">
                 <h2 class="serif text-4xl text-blue-900 font-bold">Friday Evening Service</h2>
                 <div class="w-20 h-1 bg-blue-200 mx-auto mt-4"></div>
                 <p class="text-gray-500 font-medium mt-2">7:30 PM – 9:40 PM</p>
             </div>
 
             <div class="space-y-4">
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showTeamProfile('Praise & Worship Team', 'Ministry Leaders', 'praise')">
                     <div class="profile-img-placeholder"><i class="fas fa-music"></i></div>
                     <div class="flex-1">
@@ -347,9 +371,9 @@
                     <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                 </div>
 
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showProfile('Sis Eva McLeod', 'Opening Prayer', 'eva')">
-                    <div class="profile-img-placeholder"><i class="fas fa-user"></i></div>
+                    <div class="profile-img-placeholder"><i class="fa-solid fa-hands-praying"></i></div>
                     <div class="flex-1">
                         <span class="time-badge">7:45 – 7:50</span>
                         <h3 class="font-bold">Opening Prayer</h3>
@@ -358,7 +382,7 @@
                     <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                 </div>
 
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showProfile('Sis Vernessa Fontellio', 'Reading from John 15: 1, 2 & 4', 'vernessa')">
                     <div class="profile-img-placeholder"><i class="fas fa-bible"></i></div>
                     <div class="flex-1">
@@ -370,7 +394,7 @@
                 </div>
 
                 <!-- Ministry Leader - Keeps image on the outside -->
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showProfile('Sis Melleta Brown', 'Ministry Leader', 'melleta')">
                     <div class="profile-img-placeholder" style="background-image: url('Images/Melleta.jpeg')"></div>
                     <div class="flex-1">
@@ -381,7 +405,7 @@
                     <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                 </div>
 
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showDualProfile('Sis Athene Ledger & Sis Michelle St. Louis', 'Session Facilitators', 'athene', 'michelleA')">
                     <div class="profile-img-placeholder"><i class="fas fa-comments"></i></div>
                     <div class="flex-1">
@@ -392,7 +416,7 @@
                     <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                 </div>
 
-                <div class="card p-5 flex items-center gap-4">
+                <div class="card p-5 flex items-center gap-4 reveal-on-scroll">
                     <div class="profile-img-placeholder">
                         <i class="fa-solid fa-hand-holding-heart"></i>
                     </div>
@@ -403,10 +427,10 @@
                     </div>
                 </div>
 
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showTeamProfile('Praise & Worship Team', 'Ministry Leaders', 'praise')">
                     <div class="profile-img-placeholder">
-                        <i class="fa-solid fa-hands-praying"></i>
+                        <i class="fas fa-music"></i>
                     </div>
                     <div class="flex-1">
                         <span class="time-badge">8:35 – 8:55</span>
@@ -416,7 +440,8 @@
                 </div>
 
                 <!-- Speaker - Keeps image on the outside -->
-                <div class="card p-6 shades-of-blue text-white interactive shadow-lg" onclick="showSpeaker('baptiste')">
+                <div class="card p-6 shades-of-blue text-white interactive shadow-lg reveal-on-scroll"
+                    onclick="showSpeaker('baptiste')">
                     <div class="flex flex-col md:flex-row md:items-center gap-6">
                         <div class="w-24 h-24 rounded-2xl bg-white/20 flex-shrink-0 flex items-center justify-center border border-white/30 overflow-hidden bg-cover bg-center"
                             style="background-image: url('Images/DB.jpeg')">
@@ -435,7 +460,7 @@
                     </div>
                 </div>
 
-                <div class="card p-5 interactive flex items-center gap-4"
+                <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                     onclick="showProfile('Sis Brenda Rose', 'Closing prayer and altar call.', 'brenda')">
                     <div class="profile-img-placeholder"><i class="fas fa-pray"></i></div>
                     <div class="flex-1">
@@ -446,7 +471,7 @@
                     <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                 </div>
 
-                <div class="text-center pt-4 opacity-60 italic text-sm">
+                <div class="text-center pt-4 opacity-60 italic text-sm reveal-on-scroll">
                     Closing Remarks, Dismissal & Light Refreshment
                 </div>
             </div>
@@ -454,7 +479,7 @@
 
         <!-- Saturday Section -->
         <section id="saturday" class="hidden space-y-8 page-fade-in">
-            <div class="text-center">
+            <div class="text-center reveal-on-scroll">
                 <h2 class="serif text-4xl text-blue-900 font-bold">Saturday Celebration</h2>
                 <div
                     class="mt-3 inline-block px-6 py-1 bg-blue-900 text-white text-xs font-bold rounded-full uppercase tracking-widest">
@@ -468,11 +493,11 @@
 
             <!-- Morning Session -->
             <div>
-                <h3 class="serif text-xl font-bold text-blue-900 flex items-center gap-3 mb-6">
+                <h3 class="serif text-xl font-bold text-blue-900 flex items-center gap-3 mb-6 reveal-on-scroll">
                     <i class="fas fa-sun text-yellow-500"></i> Morning Session
                 </h3>
                 <div class="space-y-3">
-                    <div class="card p-4 interactive flex items-center gap-4"
+                    <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Priscella Douglas', 'Devotion Leader', 'priscella')">
                         <div class="profile-img-placeholder"><i class="fas fa-user"></i></div>
                         <div class="flex-1">
@@ -483,7 +508,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-4 interactive flex items-center gap-4"
+                    <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showTeamProfile('Praise & Worship Team', 'Ministry Leaders', 'praise')">
                         <div class="profile-img-placeholder"><i class="fas fa-music"></i></div>
                         <div class="flex-1">
@@ -493,7 +518,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-4 interactive flex items-center gap-4"
+                    <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Michelle Hibbert', 'Presenter', 'michelleA')">
                         <div class="profile-img-placeholder"><i class="fas fa-user"></i></div>
                         <div class="flex-1">
@@ -504,7 +529,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-4 interactive flex items-center gap-4"
+                    <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Shelia', 'Special Music', 'shelia')">
                         <div class="profile-img-placeholder"><i class="fas fa-microphone"></i></div>
                         <div class="flex-1">
@@ -515,7 +540,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-4 interactive flex items-center gap-4"
+                    <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Barbara Guthrie', 'Production Lead', 'barbara')">
                         <div class="profile-img-placeholder"><i class="fas fa-clapperboard"></i></div>
                         <div class="flex-1">
@@ -526,7 +551,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-4 interactive flex items-center gap-4"
+                    <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Nadia Lake', 'Dance Group Lead', 'nadia')">
                         <div class="profile-img-placeholder">
                             <i class="fa-solid fa-person-walking"></i>
@@ -542,16 +567,16 @@
             </div>
 
             <div
-                class="py-4 text-center border-y border-dashed border-gray-200 uppercase text-[10px] tracking-[0.5em] font-bold text-gray-400">
+                class="py-4 text-center border-y border-dashed border-gray-200 uppercase text-[10px] tracking-[0.5em] font-bold text-gray-400 reveal-on-scroll">
                 Short Break</div>
 
             <!-- Divine Service -->
             <div>
-                <h3 class="serif text-xl font-bold text-blue-900 flex items-center gap-3 mb-6">
+                <h3 class="serif text-xl font-bold text-blue-900 flex items-center gap-3 mb-6 reveal-on-scroll">
                     <i class="fas fa-crown text-blue-500"></i> Divine Service (12:40 PM – 3:05 PM)
                 </h3>
                 <div class="space-y-4">
-                    <div class="card p-5 interactive flex items-center gap-4"
+                    <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showTeamProfile('Praise & Worship Team', 'Ministry Leaders', 'praise')">
                         <div class="profile-img-placeholder"><i class="fas fa-music"></i></div>
                         <div class="flex-1">
@@ -561,7 +586,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-5 interactive flex items-center gap-4"
+                    <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Antonette Scott', 'Service Intro', 'ac')">
                         <div class="profile-img-placeholder"><i class="fas fa-handshake"></i></div>
                         <div class="flex-1">
@@ -572,7 +597,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-5 interactive flex items-center gap-4"
+                    <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Mighty Warriors', 'Presentation', 'mw')">
                         <div class="profile-img-placeholder"><i class="fas fa-shield-alt"></i></div>
                         <div class="flex-1">
@@ -582,7 +607,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-5 interactive flex items-center gap-4"
+                    <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showProfile('Sis Jalesa Fraser', 'Spoken Word', 'jalesa')">
                         <div class="profile-img-placeholder"><i class="fas fa-comment"></i></div>
                         <div class="flex-1">
@@ -593,7 +618,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-5 interactive flex items-center gap-4"
+                    <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
                         onclick="showTeamProfile('COG Brampton Choir', 'Music Ministry', 'choir')">
                         <div class="profile-img-placeholder"><i class="fas fa-music"></i></div>
                         <div class="flex-1">
@@ -605,7 +630,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-5 interactive flex items-center gap-4 border-l-4 border-yellow-500"
+                    <div class="card p-5 interactive flex items-center gap-4 border-l-4 border-yellow-500 reveal-on-scroll"
                         onclick="showProfile('Sis Michelle St. Louis', 'Awards Lead', 'michelle_s')">
                         <div class="profile-img-placeholder"><i class="fas fa-award"></i></div>
                         <div class="flex-1">
@@ -616,7 +641,7 @@
                         <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
                     </div>
 
-                    <div class="card p-5 interactive flex items-center gap-4 bg-blue-50"
+                    <div class="card p-5 interactive flex items-center gap-4 bg-blue-50 reveal-on-scroll"
                         onclick="showTeamProfile('Praise & Worship Team', 'Ministry Leaders', 'praise')">
                         <div class="profile-img-placeholder"><i class="fas fa-music"></i></div>
                         <div class="flex-1">
@@ -627,7 +652,7 @@
                     </div>
 
                     <!-- Speaker - Keeps image on the outside -->
-                    <div class="card p-8 shades-of-blue text-white interactive shadow-xl transform hover:scale-[1.02]"
+                    <div class="card p-8 shades-of-blue text-white interactive shadow-xl transform hover:scale-[1.02] reveal-on-scroll"
                         onclick="showSpeaker('graham')">
                         <div class="flex flex-col md:flex-row md:items-center gap-8">
                             <div class="w-32 h-32 rounded-full border-4 border-white/20 overflow-hidden flex-shrink-0 bg-white/10 flex items-center justify-center bg-cover bg-center"
@@ -651,7 +676,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="card p-5 border-t-4 border-blue-900 flex items-center gap-4">
+                        <div class="card p-5 border-t-4 border-blue-900 flex items-center gap-4 reveal-on-scroll">
                             <div class="profile-img-placeholder"><i class="fas fa-pray"></i></div>
                             <div>
                                 <p class="text-xs uppercase font-bold text-gray-400">Closing Prayer</p>
@@ -659,7 +684,7 @@
                             </div>
                         </div>
                         <!-- Ministry Leader - Keeps image on the outside -->
-                        <div class="card p-5 border-t-4 border-blue-400 flex items-center gap-4 interactive"
+                        <div class="card p-5 border-t-4 border-blue-400 flex items-center gap-4 interactive reveal-on-scroll"
                             onclick="showProfile('Sis Melleta Brown', 'Ministry Leader', 'melleta')">
                             <div class="profile-img-placeholder" style="background-image: url('Images/Melleta.jpeg')">
                             </div>
@@ -670,7 +695,7 @@
                         </div>
                     </div>
 
-                    <div class="card p-8 bg-blue-50 text-center border-2 border-dashed border-blue-200 cursor-pointer hover:bg-blue-100 transition-all"
+                    <div class="card p-8 bg-blue-50 text-center border-2 border-dashed border-blue-200 cursor-pointer hover:bg-blue-100 transition-all reveal-on-scroll"
                         onclick="showPage('menu')">
                         <i class="fas fa-utensils text-blue-300 text-2xl mb-2"></i>
                         <h4 class="font-bold text-blue-900 text-xl">Fellowship Lunch for All</h4>
@@ -682,7 +707,7 @@
 
         <!-- About/Mission Section -->
         <section id="about" class="hidden space-y-10 page-fade-in">
-            <div class="card p-10 bg-blue-900 text-white relative overflow-hidden">
+            <div class="card p-10 bg-blue-900 text-white relative overflow-hidden reveal-on-scroll">
                 <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/5 rounded-full"></div>
                 <h3 class="serif text-3xl font-bold mb-6 border-b border-white/20 pb-4">🌿 Our Purpose</h3>
                 <p class="text-blue-100 leading-relaxed text-lg italic">
@@ -694,7 +719,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card p-8 border-t-8 border-blue-600">
+                <div class="card p-8 border-t-8 border-blue-600 reveal-on-scroll">
                     <h3 class="serif text-2xl font-bold text-blue-900 mb-4">🌎 Our Vision</h3>
                     <p class="text-gray-600 leading-relaxed">
                         To continue to expand the boundaries of our Women’s Ministry beyond the limits of our local
@@ -702,7 +727,7 @@
                         various conditions of life.
                     </p>
                 </div>
-                <div class="card p-8 border-t-8 border-blue-300">
+                <div class="card p-8 border-t-8 border-blue-300 reveal-on-scroll">
                     <h3 class="serif text-2xl font-bold text-blue-900 mb-4">🎯 Our Mission</h3>
                     <p class="text-gray-600 leading-relaxed mb-4">
                         To impact the lives of other women by empowering them toward purpose and wholeness.
@@ -722,7 +747,7 @@
                 </div>
             </div>
 
-            <div class="card p-8">
+            <div class="card p-8 reveal-on-scroll">
                 <h3 class="serif text-2xl font-bold text-blue-900 mb-6 text-center">Making a Difference in the Lives of:
                 </h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -750,13 +775,13 @@
 
         <!-- Menu Section -->
         <section id="menu" class="hidden space-y-8 page-fade-in">
-            <div class="text-center mb-8">
+            <div class="text-center mb-8 reveal-on-scroll">
                 <h2 class="serif text-4xl text-blue-900 font-bold">Fellowship Menu</h2>
                 <p class="text-gray-500 italic mt-2">Serving Saturday Afternoon in the Hall</p>
             </div>
 
             <div
-                class="card p-8 md:p-16 relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+                class="card p-8 md:p-16 relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] reveal-on-scroll">
                 <div class="relative z-10 max-w-lg mx-auto">
                     <!-- Salads -->
                     <div class="text-center mb-10">
@@ -827,11 +852,65 @@
             </div>
         </section>
 
+        <!-- Feedback Section -->
+        <section id="feedback" class="hidden space-y-8 page-fade-in">
+            <div class="text-center mb-8">
+                <h2 class="serif text-4xl text-blue-900 font-bold">Share Your Experience</h2>
+                <div class="w-20 h-1 bg-blue-200 mx-auto mt-4"></div>
+                <p class="text-gray-500 italic mt-2">We'd love to hear your thoughts and suggestions.</p>
+            </div>
+
+            <div class="card p-8 md:p-12 max-w-2xl mx-auto">
+                <form id="feedbackForm" onsubmit="submitFeedback(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-blue-900 mb-2">Name (Optional)</label>
+                        <input type="text" name="name"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-gray-50 focus:bg-white"
+                            placeholder="Your Name">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-blue-900 mb-2">Email (Optional)</label>
+                        <input type="email" name="email"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-gray-50 focus:bg-white"
+                            placeholder="your@email.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-blue-900 mb-2">Your Feedback / Suggestions <span
+                                class="text-red-500">*</span></label>
+                        <textarea name="feedback" required rows="5"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none bg-gray-50 focus:bg-white"
+                            placeholder="Tell us what you loved or how we can improve..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn"
+                        class="w-full shades-of-blue text-white font-bold text-lg py-4 rounded-xl shadow-lg transform hover:-translate-y-1 transition-all">Submit
+                        Feedback</button>
+
+                    <p class="text-[10px] text-center text-gray-400 mt-4 leading-relaxed">
+                        <i class="fas fa-lock mr-1"></i> Your responses are sent securely and directly to
+                        digitaldesignproinc@gmail.com
+                    </p>
+                </form>
+
+                <!-- Success Message UI (Hidden by default) -->
+                <div id="feedbackSuccess" class="hidden text-center py-10">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-4xl text-green-500"></i>
+                    </div>
+                    <h3 class="serif text-2xl font-bold text-blue-900 mb-2">Thank You!</h3>
+                    <p class="text-gray-600">Your feedback has been successfully sent. We truly appreciate your time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="mt-20 pt-10 border-t border-gray-200">
             <div class="text-center">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-                    <div class="space-y-4">
+                    <div class="space-y-4 reveal-on-scroll">
                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4">Ministry
                             Leadership</p>
                         <!-- Ministry Leader - Keeps image on the outside -->
@@ -847,7 +926,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-4 reveal-on-scroll">
                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4">Church Leadership
                         </p>
                         <div class="card p-6 border-l-4 border-blue-400 bg-white space-y-3">
@@ -875,8 +954,9 @@
                         </div>
                     </div>
                 </div>
-                <p class="serif text-xl text-blue-900 italic mb-8">"From Root to Fruit"</p>
-                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-10">© 2026 Women of Essence Ministry •
+                <p class="serif text-xl text-blue-900 italic mb-8 reveal-on-scroll">"From Root to Fruit"</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-10 reveal-on-scroll">© 2026 Women of
+                    Essence Ministry •
                     COG Sabbath Keeping Ministries</p>
             </div>
         </footer>
@@ -939,11 +1019,13 @@
         };
 
         const bios = {
-            baptiste: `Sis. Delores Baptiste devoted over 30 years of service to the medical field as a Registered Nurse, exemplifying dedication, professionalism, and compassionate care. Throughout her career, she demonstrated exceptional empathy and an unwavering commitment to improving the health and well-being of those entrusted to her care.
+            baptiste: `Sis. Delores Baptiste faithfully worked in the medical field for 35 years, demonstrating unwavering dedication, compassion, and care in serving others. Throughout her career, she consistently showed a deep commitment to improving the well-being of those around her.
 
-A devoted and faithful Christian, Sis. Delores has served the Lord for most of her life and continues to do so with humility and grace. Her love for people is reflected in her ongoing volunteer work, particularly with the Umbrella of Hope Ministry. She is also an active and valued member of both the Seniors Ministry and the Women’s Ministry, where she consistently offers encouragement, wisdom, and heartfelt support.
+A devoted Christian, Sis. Delores has served the Lord for most of her life and continues to do so with humility and grace. Her love for people is evident through her volunteer work, particularly with the Umbrella of Hope Ministry. She is also an active member of the Seniors Ministry and the Women’s Ministry, where she provides encouragement, wisdom, and heartfelt support.
 
-Sis. Delores is the proud mother of three children. Though retired from her nursing profession, she remains steadfast in her commitment to serving others, continuing to make a meaningful and lasting impact within her church and community.`,
+In addition to her many acts of service, Sis. Delores is also a passionate gardener. Just as a gardener carefully tends to what is planted, nurturing growth with patience and diligence, she has faithfully cultivated faith, kindness, and strength in her family, church, and community—an example that beautifully reflects the lesson of the wheat and the tares.
+
+Sis. Delores is the proud mother of three children. Though retired from her career in the medical field, she continues to serve wherever she is needed, making a lasting and meaningful impact in the lives of many."`,
             graham: `Latoya Graham was born in Toronto, Ontario to David Graham and Pauline Reynolds. She attended Crawford Adventist Academy from primary through secondary school before earning a bachelor’s degree in History and Anthropology from York University. She later completed her LLB at the University of Ottawa’s Common Law program. After articling for 10 months with four criminal lawyers, she was called to the bar in June 2012. In 2013, Ms. Graham established her own law firm and currently practices criminal law, immigration law, and consent and capacity law.
 
 Alongside her legal career, Latoya remains active in her church community, serving as Assistant Youth Leader at her local Brampton church under the leadership of Pastor Clarence Duff and Pastor Brown.
@@ -956,7 +1038,29 @@ Despite her professional and ministry responsibilities, she strives to live as a
             choir: "Images/Choir.jpeg"
         };
 
-        window.onload = () => { document.body.classList.add('loaded'); };
+        // Scroll Animation Logic
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        });
+
+        function initScrollAnimations() {
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                scrollObserver.observe(el);
+            });
+        }
+
+        window.onload = () => {
+            document.body.classList.add('loaded');
+            initScrollAnimations();
+        };
 
         function enterProgram() {
             const overlay = document.getElementById('welcomeOverlay');
@@ -982,6 +1086,11 @@ Despite her professional and ministry responsibilities, she strives to live as a
             if (menuOverlay && menuOverlay.classList.contains('active')) {
                 toggleMobileMenu();
             }
+
+            // Reset animations so they play again when switching tabs
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                el.classList.remove('is-visible');
+            });
 
             document.querySelectorAll('section').forEach(p => p.classList.add('hidden'));
             document.getElementById(pageId).classList.remove('hidden');
@@ -1103,14 +1212,66 @@ Despite her professional and ministry responsibilities, she strives to live as a
             header.style.backgroundImage = "";
             header.classList.add('shades-of-blue');
             const avatar = document.getElementById('modalAvatar');
-            avatar.className = "w-32 h-32 rounded-full border-4 border-white bg-white/20 flex items-center justify-center text-white text-5xl transition-all duration-500 bg-cover bg-center";
             avatar.style.opacity = '1';
-            avatar.style.backgroundImage = "";
             avatar.innerHTML = `<i class="fas fa-user"></i>`;
         }
 
         function closeProfile() {
             document.getElementById('profileModal').classList.add('hidden');
+        }
+
+        function submitFeedback(e) {
+            e.preventDefault();
+            const form = document.getElementById('feedbackForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerText;
+
+            // Give user feedback that it's processing
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            // FormSubmit configuration payload
+            const payload = {
+                name: form.name.value,
+                email: form.email.value,
+                feedback: form.feedback.value,
+                _subject: "New Feedback: Women of Essence 2026",
+                _template: "box"
+            };
+
+            // Using FormSubmit.co to send direct to email without signup
+            fetch("https://formsubmit.co/ajax/digitaldesignproinc@gmail.com", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide form and show success message
+                    form.style.display = 'none';
+                    document.getElementById('feedbackSuccess').classList.remove('hidden');
+
+                    // Reset button state
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+
+                    // Reset after 4 seconds and return to Friday view
+                    setTimeout(() => {
+                        form.reset();
+                        form.style.display = 'block';
+                        document.getElementById('feedbackSuccess').classList.add('hidden');
+                        showPage('friday');
+                    }, 4000);
+                })
+                .catch(error => {
+                    console.error('Error!', error);
+                    alert("Oops! There was a problem submitting your form. Please try again.");
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                });
         }
     </script>
 </body>
