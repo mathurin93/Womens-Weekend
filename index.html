@@ -909,55 +909,82 @@
         <!-- Footer -->
         <footer class="mt-20 pt-10 border-t border-gray-200">
             <div class="text-center">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
+                    <!-- Ministry Leadership -->
                     <div class="space-y-4 reveal-on-scroll">
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4">Ministry
+                        <p
+                            class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4 text-center md:text-left">
+                            Ministry
                             Leadership</p>
-                        <!-- Ministry Leader - Keeps image on the outside -->
                         <div class="card p-6 border-l-4 border-blue-900 bg-white interactive"
                             onclick="showProfile('Sis Melleta Brown', 'Ministry Leader', 'melleta')">
-                            <div class="flex items-center gap-4 text-left">
+                            <div class="flex items-center gap-4">
                                 <div class="profile-img-placeholder"
                                     style="background-image: url('Images/Melleta.jpeg')"></div>
                                 <div>
                                     <h5 class="font-bold text-blue-900">Sis Melleta Brown</h5>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest">Ministry Leader</p>
+                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Ministry Leader
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="space-y-4 reveal-on-scroll">
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4">Church Leadership
+
+                    <!-- Church Leadership -->
+                    <div class="space-y-4 reveal-on-scroll" style="transition-delay: 100ms;">
+                        <p
+                            class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4 text-center md:text-left">
+                            Church Leadership
                         </p>
                         <div class="card p-6 border-l-4 border-blue-400 bg-white space-y-3">
-                            <!-- Ministry Leader - Keeps image on the outside -->
-                            <div class="flex items-center gap-4 text-left interactive"
+                            <div class="flex items-center gap-4 interactive"
                                 onclick="showProfile('Dr. Clarence Duff', 'Senior Pastor', 'clarence')">
                                 <div class="profile-img-placeholder"
                                     style="background-image: url('Images/Clarence.jpeg')"></div>
                                 <div>
                                     <h5 class="font-bold text-blue-900">Dr. Clarence Duff</h5>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest">Senior Pastor</p>
+                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Senior Pastor
+                                    </p>
                                 </div>
                             </div>
                             <div class="h-px bg-gray-100 w-full"></div>
-                            <!-- Ministry Leader - Keeps image on the outside -->
-                            <div class="flex items-center gap-4 text-left interactive"
+                            <div class="flex items-center gap-4 interactive"
                                 onclick="showProfile('David Samuel Brown', 'Associate Pastor', 'david_b')">
                                 <div class="profile-img-placeholder" style="background-image: url('Images/Dave.jpeg')">
                                 </div>
                                 <div>
                                     <h5 class="font-bold text-blue-900">David Samuel Brown</h5>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest">Associate Pastor</p>
+                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Associate Pastor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App Developer -->
+                    <div class="space-y-4 reveal-on-scroll" style="transition-delay: 200ms;">
+                        <p
+                            class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em] mb-4 text-center md:text-left">
+                            App Development
+                        </p>
+                        <div class="card p-6 border-l-4 border-blue-600 bg-white interactive"
+                            onclick="showProfile('Matt Robinson', 'App Developer', 'matt')">
+                            <div class="flex items-center gap-4">
+                                <div class="profile-img-placeholder" style="background-image: url('Images/Matt.jpeg')">
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-900">Matt Robinson</h5>
+                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">App Developer
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <p class="serif text-xl text-blue-900 italic mb-8 reveal-on-scroll">"From Root to Fruit"</p>
                 <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-10 reveal-on-scroll">© 2026 Women of
-                    Essence Ministry •
-                    COG Sabbath Keeping Ministries</p>
+                    Essence Ministry • COG Sabbath Keeping Ministries</p>
             </div>
         </footer>
     </main>
@@ -1003,7 +1030,7 @@
             priscella: "Images/Priscella.jpeg",
             jalesa: "Images/Jalesa.jpeg",
             vernessa: "Images/Vernessa.jpeg",
-            athene: "Images/Athene.jpeg",
+            athene: "Images/athene.png",
             michelleA: "Images/MichelleA.jpeg",
             mw: "Images/MW.jpeg",
             lisa: "Images/Lisa.jpeg",
@@ -1011,9 +1038,10 @@
             anne: "Images/Anne.jpeg",
             ac: "Images/AC.jpeg",
             christine: "Images/christine.jpeg",
-            // eva: "Images/Eva.jpeg",
+            eva: "Images/Eva.jpeg",
             brenda: "Images/Brenda.jpeg",
             michelle_s: "Images/louis.jpeg",
+            matt: "Images/Matt.jpeg"
             // shelia: "Images/Shelia.jpeg",
             // barbara: "Images/Barbara.jpeg"
         };
@@ -1030,7 +1058,8 @@ Sis. Delores is the proud mother of three children. Though retired from her care
 
 Alongside her legal career, Latoya remains active in her church community, serving as Assistant Youth Leader at her local Brampton church under the leadership of Pastor Clarence Duff and Pastor Brown.
 
-Despite her professional and ministry responsibilities, she strives to live as a sincere, passionate, and authentic Christian and lawyer. Her guiding principle is rooted in Jude 24–25, trusting in the God who is able to keep her from falling and present her faultless with joy.`
+Despite her professional and ministry responsibilities, she strives to live as a sincere, passionate, and authentic Christian and lawyer. Her guiding principle is rooted in Jude 24–25, trusting in the God who is able to keep her from falling and present her faultless with joy.`,
+            matt: `Matt Robinson is the dedicated app developer behind the Women of Essence 2026 digital program experience.`
         };
 
         const teamImages = {
@@ -1087,8 +1116,9 @@ Despite her professional and ministry responsibilities, she strives to live as a
                 toggleMobileMenu();
             }
 
-            // Reset animations so they play again when switching tabs
-            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            // Reset animations so they play again when switching tabs 
+            // but ONLY for the sections, not the header!
+            document.querySelectorAll('section .reveal-on-scroll').forEach(el => {
                 el.classList.remove('is-visible');
             });
 
@@ -1212,7 +1242,9 @@ Despite her professional and ministry responsibilities, she strives to live as a
             header.style.backgroundImage = "";
             header.classList.add('shades-of-blue');
             const avatar = document.getElementById('modalAvatar');
+            avatar.className = "w-32 h-32 rounded-full border-4 border-white bg-white/20 flex items-center justify-center text-white text-5xl transition-all duration-500 bg-cover bg-center";
             avatar.style.opacity = '1';
+            avatar.style.backgroundImage = "";
             avatar.innerHTML = `<i class="fas fa-user"></i>`;
         }
 
