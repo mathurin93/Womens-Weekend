@@ -207,6 +207,23 @@
             transform: translateY(0);
         }
 
+        /* --- Nudge UI Animations --- */
+        @keyframes subtle-bounce-x {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(4px);
+            }
+        }
+
+        .animate-bounce-x {
+            animation: subtle-bounce-x 2s infinite ease-in-out;
+        }
+
         /* Responsive Fixes for iPhone SE */
         @media (max-width: 375px) {
             h1.serif.text-5xl {
@@ -325,27 +342,40 @@
 
         <!-- Mobile Menu Overlay -->
         <div id="mobileMenuOverlay"
-            class="absolute inset-x-0 top-14 bg-white border-t border-gray-100 shadow-2xl md:hidden flex flex-col p-6 space-y-4 z-40">
-            <button onclick="showPage('friday')" id="mobile-btn-friday"
-                class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-blue-900 bg-blue-50 flex items-center gap-3 transition-all">
-                <i class="fas fa-moon w-5"></i> Friday Evening
-            </button>
-            <button onclick="showPage('saturday')" id="mobile-btn-saturday"
-                class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
-                <i class="fas fa-sun w-5"></i> Saturday Service
-            </button>
-            <button onclick="showPage('about')" id="mobile-btn-about"
-                class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
-                <i class="fas fa-heart w-5"></i> Our Identity
-            </button>
-            <button onclick="showPage('menu')" id="mobile-btn-menu"
-                class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
-                <i class="fas fa-utensils w-5"></i> Fellowship Menu
-            </button>
-            <button onclick="showPage('feedback')" id="mobile-btn-feedback"
-                class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
-                <i class="fas fa-comment-dots w-5"></i> Leave Feedback
-            </button>
+            class="absolute inset-x-0 top-14 bg-white border-t border-gray-100 shadow-2xl md:hidden flex flex-col z-40">
+            <!-- Scrollable content wrapper -->
+            <div id="mobileMenuScroll"
+                class="flex flex-col p-6 space-y-4 max-h-[55vh] overflow-y-auto custom-scrollbar relative"
+                onscroll="checkMenuScroll()">
+                <button onclick="showPage('friday')" id="mobile-btn-friday"
+                    class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-blue-900 bg-blue-50 flex items-center gap-3 transition-all">
+                    <i class="fas fa-moon w-5"></i> Friday Evening
+                </button>
+                <button onclick="showPage('saturday')" id="mobile-btn-saturday"
+                    class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
+                    <i class="fas fa-sun w-5"></i> Saturday Service
+                </button>
+                <button onclick="showPage('about')" id="mobile-btn-about"
+                    class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
+                    <i class="fas fa-heart w-5"></i> Our Identity
+                </button>
+                <button onclick="showPage('menu')" id="mobile-btn-menu"
+                    class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
+                    <i class="fas fa-utensils w-5"></i> Fellowship Menu
+                </button>
+                <button onclick="showPage('feedback')" id="mobile-btn-feedback"
+                    class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-gray-600 flex items-center gap-3 transition-all">
+                    <i class="fas fa-comment-dots w-5"></i> Leave Feedback
+                </button>
+            </div>
+            <!-- Visual indicator to prompt scrolling -->
+            <div id="scrollIndicator"
+                class="pb-3 pt-1 bg-gradient-to-t from-white to-transparent text-center flex flex-col items-center transition-opacity duration-300 pointer-events-none absolute bottom-0 left-0 w-full">
+                <span
+                    class="text-[10px] uppercase tracking-widest font-extrabold text-blue-600 mb-1 bg-white/70 px-2 rounded-md">Scroll
+                    for more</span>
+                <i class="fas fa-chevron-down text-blue-600 animate-bounce"></i>
+            </div>
         </div>
     </nav>
 
@@ -368,7 +398,7 @@
                         <span class="time-badge">7:30 – 7:45</span>
                         <h3 class="font-bold">Praise & Worship</h3>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
@@ -379,7 +409,7 @@
                         <h3 class="font-bold">Opening Prayer</h3>
                         <p class="text-blue-600 text-sm">Sis Eva McLeod</p>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
@@ -390,7 +420,7 @@
                         <h3 class="font-bold">Scripture Reading</h3>
                         <p class="text-blue-600 text-sm">John 15: 1, 2 & 4 — Sis Vernessa Fontellio</p>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <!-- Ministry Leader - Keeps image on the outside -->
@@ -402,18 +432,18 @@
                         <h3 class="font-bold">Welcome & Weekend Overview</h3>
                         <p class="text-blue-600 text-sm">Sis Melleta Brown</p>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
-                    onclick="showDualProfile('Sis Athene Ledger & Sis Michelle St. Louis', 'Session Facilitators', 'athene', 'michelleA')">
+                    onclick="showDualProfile('Sis Athene Ledger & Sis Michelle St. Louis', 'Session Facilitators', 'athene', 'michelle_s')">
                     <div class="profile-img-placeholder"><i class="fas fa-comments"></i></div>
                     <div class="flex-1">
                         <span class="time-badge">8:00 – 8:25</span>
                         <h3 class="font-bold">Special Interactive Session</h3>
                         <p class="text-blue-600 text-sm">Sis Athene Ledger & Sis Michelle St. Louis</p>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <div class="card p-5 flex items-center gap-4 reveal-on-scroll">
@@ -436,7 +466,7 @@
                         <span class="time-badge">8:35 – 8:55</span>
                         <h3 class="font-bold">Praise & Worship</h3>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <!-- Speaker - Keeps image on the outside -->
@@ -468,7 +498,7 @@
                         <h3 class="font-bold">Altar Call & Closing Prayer</h3>
                         <p class="text-blue-600 text-sm">Sis Brenda Rose</p>
                     </div>
-                    <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                    <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                 </div>
 
                 <div class="text-center pt-4 opacity-60 italic text-sm reveal-on-scroll">
@@ -483,12 +513,30 @@
                 <h2 class="serif text-4xl text-blue-900 font-bold">Saturday Celebration</h2>
                 <div
                     class="mt-3 inline-block px-6 py-1 bg-blue-900 text-white text-xs font-bold rounded-full uppercase tracking-widest">
-                    Be Strong and Bold in Christ
+                    From Root to Fruit
                 </div>
-                <p class="mt-4 text-gray-700 font-semibold italic interactive inline-block px-3 py-1 rounded-full cursor-pointer hover:bg-white/50 transition-colors"
-                    onclick="showProfile('Sis Joanna Nichol', 'Moderator', 'joe')">
-                    Moderator: Sis Joanna Nichol <i class="fas fa-info-circle text-blue-400 ml-1"></i>
-                </p>
+
+                <!-- Highly Visible Moderator Nudge Badge -->
+                <div class="mt-6 flex justify-center">
+                    <div class="inline-flex items-center gap-3 bg-white px-5 py-2 rounded-full shadow-md cursor-pointer hover:shadow-lg transition-all border border-blue-100 hover:border-blue-300 interactive"
+                        onclick="showProfile('Sis Joanna Nichol', 'Moderator', 'joe')">
+                        <div class="w-8 h-8 rounded-full border-2 border-white shadow-sm bg-cover bg-center bg-blue-100 flex items-center justify-center"
+                            style="background-image: url('Images/Joe.jpeg')">
+                            <i class="fas fa-user text-blue-500 text-xs" style="display: none;"></i>
+                            <!-- Fallback if no image -->
+                        </div>
+                        <div class="text-left flex flex-col">
+                            <span
+                                class="text-[10px] uppercase font-bold text-gray-400 leading-none mb-0.5">Moderator</span>
+                            <span class="text-sm font-extrabold text-blue-900 leading-tight">Sis Joanna Nichol</span>
+                        </div>
+                        <div
+                            class="ml-2 bg-blue-50 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
+                            <i class="fas fa-arrow-right text-[10px]"></i>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Morning Session -->
@@ -502,10 +550,10 @@
                         <div class="profile-img-placeholder"><i class="fas fa-user"></i></div>
                         <div class="flex-1">
                             <span class="time-badge">11:00 – 11:25</span>
-                            <p class="text-sm">Morning Devotion</p>
-                            <p class="font-bold text-blue-900">Sis Priscella Douglas</p>
+                            <p class="text-sm font-bold mt-1 text-slate-800">Morning Devotion</p>
+                            <p class="text-sm text-blue-600">Sis Priscella Douglas</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
@@ -513,9 +561,9 @@
                         <div class="profile-img-placeholder"><i class="fas fa-music"></i></div>
                         <div class="flex-1">
                             <span class="time-badge">11:25 – 11:35</span>
-                            <p class="text-sm">Praise & Worship</p>
+                            <p class="text-sm font-bold mt-1 text-slate-800">Praise & Worship</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
@@ -523,10 +571,10 @@
                         <div class="profile-img-placeholder"><i class="fas fa-user"></i></div>
                         <div class="flex-1">
                             <span class="time-badge">11:35 – 11:55</span>
-                            <p class="text-sm">Special Presentation</p>
-                            <p class="font-bold text-blue-900">Sis Michelle Hibbert</p>
+                            <p class="text-sm font-bold mt-1 text-slate-800">Special Presentation</p>
+                            <p class="text-sm text-blue-600">Sis Michelle Hibbert</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
@@ -534,10 +582,10 @@
                         <div class="profile-img-placeholder"><i class="fas fa-microphone"></i></div>
                         <div class="flex-1">
                             <span class="time-badge">11:55 – 12:05</span>
-                            <p class="text-sm">Special Music</p>
-                            <p class="font-bold text-blue-900">Sis Shelia</p>
+                            <p class="text-sm font-bold mt-1 text-slate-800">Special Music</p>
+                            <p class="text-sm text-blue-600">Sis Shelia</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
@@ -545,10 +593,10 @@
                         <div class="profile-img-placeholder"><i class="fas fa-clapperboard"></i></div>
                         <div class="flex-1">
                             <span class="time-badge">12:05 – 12:20</span>
-                            <p class="text-sm">COG Brampton Production</p>
-                            <p class="font-bold text-blue-900">Sis Barbara Guthrie</p>
+                            <p class="text-sm font-bold mt-1 text-slate-800">COG Brampton Production</p>
+                            <p class="text-sm text-blue-600">Sis Barbara Guthrie</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-4 interactive flex items-center gap-4 reveal-on-scroll"
@@ -558,16 +606,16 @@
                         </div>
                         <div class="flex-1">
                             <span class="time-badge">12:20 – 12:30</span>
-                            <p class="text-sm">COG Brampton Dance Group</p>
-                            <p class="font-bold text-blue-900">Sis Nadia Lake</p>
+                            <p class="text-sm font-bold mt-1 text-slate-800">COG Brampton Dance Group</p>
+                            <p class="text-sm text-blue-600">Sis Nadia Lake</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
                 </div>
             </div>
 
             <div
-                class="py-4 text-center border-y border-dashed border-gray-200 uppercase text-[10px] tracking-[0.5em] font-bold text-gray-400 reveal-on-scroll">
+                class="py-4 text-center border-y border-dashed border-gray-300 uppercase text-[10px] tracking-[0.5em] font-bold text-gray-400 reveal-on-scroll">
                 Short Break</div>
 
             <!-- Divine Service -->
@@ -583,7 +631,7 @@
                             <span class="time-badge">12:40 – 12:50</span>
                             <h3 class="font-bold">Praise & Worship (Chorus)</h3>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
@@ -594,7 +642,7 @@
                             <h3 class="font-bold">Welcome, Scripture & Prayer</h3>
                             <p class="text-blue-600 text-sm">Sis Antonette Scott</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
@@ -604,7 +652,7 @@
                             <span class="time-badge">1:05 – 1:15</span>
                             <h3 class="font-bold">Presentation: Mighty Warriors</h3>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
@@ -615,7 +663,7 @@
                             <h3 class="font-bold">Spoken Word</h3>
                             <p class="text-blue-600 text-sm">Sis Jalesa Fraser</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
@@ -627,7 +675,7 @@
                             <p class="text-gray-500 text-xs italic">Followed by Tithes & Offering (Sis Joanna Nichol)
                             </p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-5 interactive flex items-center gap-4 border-l-4 border-yellow-500 reveal-on-scroll"
@@ -638,7 +686,7 @@
                             <h3 class="font-bold">Acknowledgment & Award</h3>
                             <p class="text-blue-600 text-sm">Sis Michelle St Louis</p>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900 opacity-80"></i>
+                        <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                     </div>
 
                     <div class="card p-5 interactive flex items-center gap-4 bg-blue-50 reveal-on-scroll"
@@ -648,7 +696,7 @@
                             <span class="time-badge">1:45 – 2:10</span>
                             <h3 class="font-bold uppercase tracking-widest text-blue-900">Praise & Worship</h3>
                         </div>
-                        <i class="fas fa-chevron-right text-blue-900"></i>
+                        <i class="fas fa-chevron-right text-blue-900 animate-bounce-x"></i>
                     </div>
 
                     <!-- Speaker - Keeps image on the outside -->
@@ -676,22 +724,25 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="card p-5 border-t-4 border-blue-900 flex items-center gap-4 reveal-on-scroll">
+                        <div class="card p-5 border-t-4 border-blue-900 flex items-center gap-4 reveal-on-scroll interactive"
+                            onclick="showSpeaker('graham')">
                             <div class="profile-img-placeholder"><i class="fas fa-pray"></i></div>
-                            <div>
-                                <p class="text-xs uppercase font-bold text-gray-400">Closing Prayer</p>
+                            <div class="flex-1">
+                                <p class="text-xs uppercase font-bold text-gray-500">Closing Prayer</p>
                                 <p class="font-bold text-blue-900">Sis Latoya Graham</p>
                             </div>
+                            <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                         </div>
                         <!-- Ministry Leader - Keeps image on the outside -->
                         <div class="card p-5 border-t-4 border-blue-400 flex items-center gap-4 interactive reveal-on-scroll"
                             onclick="showProfile('Sis Melleta Brown', 'Ministry Leader', 'melleta')">
                             <div class="profile-img-placeholder" style="background-image: url('Images/Melleta.jpeg')">
                             </div>
-                            <div>
-                                <p class="text-xs uppercase font-bold text-gray-400">Vote of Thanks</p>
+                            <div class="flex-1">
+                                <p class="text-xs uppercase font-bold text-gray-500">Vote of Thanks</p>
                                 <p class="font-bold text-blue-900">Sis Melleta Brown</p>
                             </div>
+                            <i class="fas fa-chevron-right text-blue-900 opacity-80 animate-bounce-x"></i>
                         </div>
                     </div>
 
@@ -921,11 +972,12 @@
                             <div class="flex items-center gap-4">
                                 <div class="profile-img-placeholder"
                                     style="background-image: url('Images/Melleta.jpeg')"></div>
-                                <div>
+                                <div class="flex-1">
                                     <h5 class="font-bold text-blue-900">Sis Melleta Brown</h5>
                                     <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Ministry Leader
                                     </p>
                                 </div>
+                                <i class="fas fa-chevron-right text-blue-900 opacity-50 animate-bounce-x"></i>
                             </div>
                         </div>
                     </div>
@@ -937,26 +989,30 @@
                             Church Leadership
                         </p>
                         <div class="card p-6 border-l-4 border-blue-400 bg-white space-y-3">
+                            <!-- Ministry Leader - Keeps image on the outside -->
                             <div class="flex items-center gap-4 interactive"
                                 onclick="showProfile('Dr. Clarence Duff', 'Senior Pastor', 'clarence')">
                                 <div class="profile-img-placeholder"
                                     style="background-image: url('Images/Clarence.jpeg')"></div>
-                                <div>
+                                <div class="flex-1">
                                     <h5 class="font-bold text-blue-900">Dr. Clarence Duff</h5>
                                     <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Senior Pastor
                                     </p>
                                 </div>
+                                <i class="fas fa-chevron-right text-blue-900 opacity-50 animate-bounce-x"></i>
                             </div>
                             <div class="h-px bg-gray-100 w-full"></div>
+                            <!-- Ministry Leader - Keeps image on the outside -->
                             <div class="flex items-center gap-4 interactive"
                                 onclick="showProfile('David Samuel Brown', 'Associate Pastor', 'david_b')">
                                 <div class="profile-img-placeholder" style="background-image: url('Images/Dave.jpeg')">
                                 </div>
-                                <div>
+                                <div class="flex-1">
                                     <h5 class="font-bold text-blue-900">David Samuel Brown</h5>
                                     <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Associate Pastor
                                     </p>
                                 </div>
+                                <i class="fas fa-chevron-right text-blue-900 opacity-50 animate-bounce-x"></i>
                             </div>
                         </div>
                     </div>
@@ -972,11 +1028,12 @@
                             <div class="flex items-center gap-4">
                                 <div class="profile-img-placeholder" style="background-image: url('Images/Matt.jpeg')">
                                 </div>
-                                <div>
+                                <div class="flex-1">
                                     <h5 class="font-bold text-blue-900">Matt Robinson</h5>
                                     <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">App Developer
                                     </p>
                                 </div>
+                                <i class="fas fa-chevron-right text-blue-900 opacity-50 animate-bounce-x"></i>
                             </div>
                         </div>
                     </div>
@@ -1107,6 +1164,24 @@ Despite her professional and ministry responsibilities, she strives to live as a
                 icon.classList.replace('fa-bars', 'fa-times');
             } else {
                 icon.classList.replace('fa-times', 'fa-bars');
+            }
+        }
+
+        function checkMenuScroll() {
+            const menu = document.getElementById('mobileMenuScroll');
+            const indicator = document.getElementById('scrollIndicator');
+
+            // Check if there's actually overflowing content
+            if (menu.scrollHeight <= menu.clientHeight) {
+                indicator.style.opacity = '0';
+                return;
+            }
+
+            // Hide indicator if scrolled to the bottom
+            if (menu.scrollHeight - menu.scrollTop <= menu.clientHeight + 15) {
+                indicator.style.opacity = '0';
+            } else {
+                indicator.style.opacity = '1';
             }
         }
 
