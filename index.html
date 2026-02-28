@@ -343,9 +343,9 @@
         <!-- Mobile Menu Overlay -->
         <div id="mobileMenuOverlay"
             class="absolute inset-x-0 top-14 bg-white border-t border-gray-100 shadow-2xl md:hidden flex flex-col z-40">
-            <!-- Scrollable content wrapper -->
+            <!-- Scrollable content wrapper: Increased padding bottom (pb-20) and max-height so it scrolls comfortably past the indicator -->
             <div id="mobileMenuScroll"
-                class="flex flex-col p-6 space-y-4 max-h-[55vh] overflow-y-auto custom-scrollbar relative"
+                class="flex flex-col p-6 pb-20 space-y-4 max-h-[60vh] overflow-y-auto custom-scrollbar relative"
                 onscroll="checkMenuScroll()">
                 <button onclick="showPage('friday')" id="mobile-btn-friday"
                     class="mobile-nav-btn text-left p-4 rounded-xl font-bold text-blue-900 bg-blue-50 flex items-center gap-3 transition-all">
@@ -368,11 +368,12 @@
                     <i class="fas fa-comment-dots w-5"></i> Leave Feedback
                 </button>
             </div>
-            <!-- Visual indicator to prompt scrolling -->
+
+            <!-- Visual indicator to prompt scrolling: Lifted higher, opaque pill over a stronger gradient -->
             <div id="scrollIndicator"
-                class="pb-3 pt-1 bg-gradient-to-t from-white to-transparent text-center flex flex-col items-center transition-opacity duration-300 pointer-events-none absolute bottom-0 left-0 w-full">
+                class="pb-6 pt-12 bg-gradient-to-t from-white via-white/90 to-transparent text-center flex flex-col items-center transition-opacity duration-300 pointer-events-none absolute bottom-0 left-0 w-full z-10">
                 <span
-                    class="text-[10px] uppercase tracking-widest font-extrabold text-blue-600 mb-1 bg-white/70 px-2 rounded-md">Scroll
+                    class="text-[10px] uppercase tracking-widest font-extrabold text-blue-600 mb-1 bg-white px-3 py-1 rounded-full shadow-sm">Scroll
                     for more</span>
                 <i class="fas fa-chevron-down text-blue-600 animate-bounce"></i>
             </div>
@@ -436,7 +437,7 @@
                 </div>
 
                 <div class="card p-5 interactive flex items-center gap-4 reveal-on-scroll"
-                    onclick="showDualProfile('Sis Athene Ledger & Sis Michelle St. Louis', 'Session Facilitators', 'athene', 'michelle_s')">
+                    onclick="showDualProfile('Sis Athene Ledger & Sis Michelle St. Louis', 'Session Facilitators', 'athene', 'michelleA')">
                     <div class="profile-img-placeholder"><i class="fas fa-comments"></i></div>
                     <div class="flex-1">
                         <span class="time-badge">8:00 – 8:25</span>
@@ -1178,7 +1179,7 @@ Despite her professional and ministry responsibilities, she strives to live as a
             }
 
             // Hide indicator if scrolled to the bottom
-            if (menu.scrollHeight - menu.scrollTop <= menu.clientHeight + 15) {
+            if (menu.scrollHeight - menu.scrollTop <= menu.clientHeight + 20) {
                 indicator.style.opacity = '0';
             } else {
                 indicator.style.opacity = '1';
